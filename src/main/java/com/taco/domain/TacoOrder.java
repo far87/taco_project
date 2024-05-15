@@ -16,14 +16,13 @@ public class TacoOrder {
     private String deliveryStreet;
     @NotBlank(message = "Cannot be empty")
     private String deliveryCity;
-
     @Size(min=2,max=2,message = "The State must have only two letter")
     private String deliveryState;
     @NotBlank(message = "Cannot be empty")
     private String deliveryZip;
     //@CreditCardNumber(message = "Not a valid credit card number")
     private String ccNumber;
-    @Pattern(regexp = "^(0[1-9]|1[0-2])/(\\d{2})$")
+    @Pattern(regexp = "^(0[1-9]|1[0-2])/(\\d{2})$",message = "Deve corrispondere al formato YY/MM")
     private String ccExpiration;
     @Digits(integer = 3,fraction = 0,message = "Invalid cvv number")
     private String ccCvv;
