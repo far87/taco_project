@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Taco</title>
+</head>
+<body>
+
+
+    <h3>Design your Taco </h3>
+	<form method="post" th:object="${taco}">
+		<div th:each="ingredient : ${ingredients}">
+			<input type="checkbox" id=${ingredient.name} th:name="${ingredient.name}" th:field="*{ingredients}" th:value="${ingredient.id}">
+			<label th:for="${ingredient.name}" th:text="${ingredient.name}">text</label>
+			<br/>	
+		</div>
+		<label for="err1" th:if="${#fields.hasErrors('ingredients')}">Error: </label>
+		<span id="err1" class="validationError" th:if="${#fields.hasErrors('ingredients')}" th:errors="*{ingredients}">Error</span>
+		<br/> 
+		<label for="tacoName">What's taco name</label>
+		<input type="text" id="tacoName" name="tacoName" th:field="*{name}">
+		<label for="err" th:if="${#fields.hasErrors('name')}">Error: </label>
+		<span id="err" class="validationError" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</span>
+
+		<br/>
+		<br/>
+		
+		<button type="submit">Add</button>
+	</form>
+	
+	<div >Taco creati:
+		<div th:each="taco : ${addedTacos}">
+			<p th:text="${taco.name}">text</p>
+			<div th:each="ingredient : ${taco.ingredients}">
+				<p th:text="${ingredient.name}">text</p>
+			</div>
+		</div>
+	</div>
+	<br/>
+	<a href="/orders/current">Order</a>
+</body>
+</html>

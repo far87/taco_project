@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>My Taco</title>
+</head>
+<body>
+    <h3>Your Current Order :</h3>
+	<div th:each="taco : ${addedTacos}">
+		<p th:text="${taco.name}"></p>
+		<div th:each="ingredient : ${taco.ingredients}">
+			<p th:text="${ingredient.name}">text</p>
+		</div>
+	</div>
+	
+    <a href="/design">Make an other order</a>
+	<br/>
+
+	<form method=POST th:object="${tacoOrder}">
+		<input id="name" type="text" th:field="*{deliveryName}" >
+		<label for="name">Delivery name</label>
+		<span class="validationError" th:if="${#fields.hasErrors('deliveryName')}" th:errors="*{deliveryName}">ERR</span>
+		<br/>
+		<input id="street" type="text" th:field="*{deliveryStreet}" >
+		<label for="street">Delivery street</label>
+		<span class="validationError" th:if="${#fields.hasErrors('deliveryStreet')}" th:errors="*{deliveryStreet}">ERR</span>
+		<br/>
+		<input id="city" type="text" th:field="*{deliveryCity}" >
+		<label for="city">Delivery city</label>
+		<span class="validationError" th:if="${#fields.hasErrors('deliveryCity')}" th:errors="*{deliveryCity}">ERR</span>
+		<br/>
+		<input id="state" type="text" th:field="*{deliveryState}" >
+		<label for="state">Delivery state</label>
+		<span class="validationError" th:if="${#fields.hasErrors('deliveryState')}" th:errors="*{deliveryState}">ERR</span>
+		<br/>
+		<input id="zip" type="text" th:field="*{deliveryZip}" >
+		<label for="zip">Delivery zip</label>
+		<span class="validationError" th:if="${#fields.hasErrors('deliveryZip')}" th:errors="*{deliveryZip}">ERR</span>
+		<br/>
+		<input id="ccNumber" type="text" th:field="*{ccNumber}" >
+		<label for="ccNumber">CC number</label>
+		<span class="validationError" th:if="${#fields.hasErrors('ccNumber')}" th:errors="*{ccNumber}">ERR</span>
+		<br/>
+		<input id="ccExpiration" type="text" th:field="*{ccExpiration}" >
+		<label for="ccExpiration">ccExpiration</label>
+		<span class="validationError" th:if="${#fields.hasErrors('ccExpiration')}" th:errors="*{ccExpiration}">ERR</span>
+		<br/>
+		<input id="cvv" type="text" th:field="*{ccCvv}" >
+		<label for="cvv">CVV</label>
+		<span class="validationError" th:if="${#fields.hasErrors('ccCvv')}" th:errors="*{ccCvv}">ERR</span>
+		<br/>
+
+		<button type="submit">Make Order</button>
+	</form>
+
+</body>
+</html>
