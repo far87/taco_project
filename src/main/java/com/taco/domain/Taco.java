@@ -9,14 +9,18 @@ import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+import lombok.Data;
+
 import java.util.Date;
 import java.util.List;
 
+@Data
 @Entity
 public class Taco {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy =GenerationType.AUTO)
     private Long id;
     
     private Date createdAt;
