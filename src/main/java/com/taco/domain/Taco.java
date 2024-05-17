@@ -1,20 +1,33 @@
 package com.taco.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Taco {
 
-    private long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    
     private Date createdAt;
+    
     @NotNull
     @Size(min=5,message = "Il nome del Taco deve avere una lunghezza minima di 5 caratteri")
     private String name;
-    @NotNull
-    @NotEmpty(message = "Devi scegliere almeno un ingrediente")
+    
+    
+    @Size(min=1,message = "Devi scegliere almeno un ingrediente")
+    @ManyToMany
     private List<Ingredient> ingredients;
 
     public Taco(){}

@@ -1,8 +1,12 @@
 package com.taco.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
 
+@Entity
 public class Ingredient {
 
+	@Id
     private String id;
     private String name;
     private Type type;
